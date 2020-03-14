@@ -61,19 +61,16 @@ public class Main {
             //m1匹配空行
             Matcher m1=Pattern.compile("^\\s*$").matcher(line);
             //m2匹配//型注释
-            Matcher m2=Pattern.compile("(^\\/{2,})|(\\/{2,}\\w*$)").matcher(line);
+            Matcher m2=Pattern.compile("\\/{2,}\\S*$").matcher(line);
             if (m1.find()) {
                 BlankLine++;
             }
             else if (m2.find()){
                 CommentsLine++;
             }
-            /*else if (line.startsWith("//")){
+            else if (line.startsWith("//")){
                 CommentsLine++;
             }
-            else if (line.matches("\\/{2,}\\w*$")){
-                CommentsLine++;
-            }*/
             else if (line.startsWith("/*")&&!line.endsWith("*/")){
                 CommentsLine++;
                 flag=true;
